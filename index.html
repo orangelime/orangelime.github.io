@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>雞蛋冰庫存</title>
+</head>
+<body>
+    <div id="app">
+        <h2>雞蛋冰每日銷售量</h2>
+        <form action="#" class="add-items">
+            <div class="content">
+                <div class="item" v-for="(ice,index) in iceFlavor">
+                    <input type="checkbox">
+                    <p class="flavor">
+                        <input type="text" name="item" v-model="ice.flavor" required>
+                    </p>
+                    <div class="sell">
+                        <p>售出:&nbsp;</p>
+                        <button class="reduce" @click="handleReduce(index)">-</button>
+                        <input type="text" class="sold" v-model="ice.count"> 
+                        <button class="add" @click="handleAdd(index)">+</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="wrapper-sold">
+                <h3>今日共售出</h3>
+            <div class="content-sold">
+                
+                    <div class="row" v-for="(ice,index) in iceFlavor">
+                        {{ice.flavor}}
+                            <span>共售出:{{ice.count}}顆</span>
+                        
+                    </div>
+                    
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            iceFlavor:[
+                {
+                    id:1,
+                    flavor:'花生',
+                    count:0
+                },
+                {
+                    id:2,
+                    flavor:'桑葚',
+                    count:0
+                },
+                {
+                    id:3,
+                    flavor:'青蘋果',
+                    count:0
+                },
+                {
+                    id:4,
+                    flavor:'酸梅',
+                    count:0
+                },
+                {
+                    id:5,
+                    flavor:'巧克力',
+                    count:0
+                },
+                {
+                    id:6,
+                    flavor:'雞蛋',
+                    count:0
+                },
+                {
+                    id:7,
+                    flavor:'牛奶',
+                    count:0
+                },
+                {
+                    id:8,
+                    flavor:'草莓',
+                    count:0
+                },
+
+            ]
+        },
+        methods:{
+            handleReduce(index){
+                if(this.iceFlavor[index].count == 0) return;
+                this.iceFlavor[index].count--;
+            },
+            handleAdd(index){
+                this.iceFlavor[index].count++;
+            }
+        }
+    })
+</script>
+</html>
